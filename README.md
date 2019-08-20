@@ -165,7 +165,7 @@ bwa index -p Homo_sapiens_assembly38 Homo_sapiens_assembly38.fasta
 </pre>
 The full slurm script for creating the index can be found at scripts folder by the name, <a href="/scripts/bwa_index.sh">bwa_index.sh</a> .
 
-This will create the following files:
+This will create the files listed below. These files will be used by `BWA` while mapping reads to reference. 
 <pre>
 resources/
 ├── Homo_sapiens_assembly38.fa
@@ -258,7 +258,7 @@ This is formated like a SAM file header and when running GATK it automatically l
 
 ### Aligning of Reads
 
-Using BWA aligner we are going to align the reads to the reference fasta file.  
+Using BWA aligner we are going to align the reads to the reference fasta file. As explained in freebayes tutorial, BWA is generally slower than Bowtie2 with similar sensitivity and both tools can perform gapped alignment for the identification of indels and can effectively map paired-end reads. However, BWA is a bit more accurate and provides information on which alignments are trustworthy. Small numbers of bad alignments can result in many false variant calls, so accuracy is paramount, and is the basis for choosing BWA.
 
 Since we have paired-end reads command will look like:
 <pre>
@@ -306,7 +306,7 @@ Alignment will create SAM files, once the alignment is done for all the samples 
 </pre>
 
 ### SAM to BAM Conversion
-The BWA aligner will create the aligned files which is in the SAM format (Sequence Alignment/Map format). SAM files are human readable and can be large files. For the easy processing through the programs we will convert these files to binary format which is the BAM format using SAMtools.  
+The BWA aligner will create a `.sam` file (Sequence Alignment/Map format) with mapping information of the reads. SAM files are human readable and can be large files. For the easy processing through the programs we will convert these files to binary format which is the BAM format using SAMtools.  
 
 So the code will look like:
 <pre>module load samtools/1.7
