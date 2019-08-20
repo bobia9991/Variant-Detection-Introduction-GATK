@@ -33,7 +33,7 @@ The exome is the part of the genome composed of exons, the sequences which, when
 
 
 ### Sample Data Download 
-For the GATK pipe line we will be using SRR1517848 dataset belongs to PRJNA59853 project.  The project was designed by Broad institute as a part of generating haplotype map for human genome.  SRR1517848 dataset is a Illumina random exon sequencing of genomic DNA paired-end library sequenced on Illumina HiSeq 2000 platform with read length of 75bps.  
+For the GATK pipe line we will be using SRR1517848 dataset belongs to PRJNA59853 project.  The project was designed by Broad institute as a part of generating haplotype map for human genome.  SRR1517848 dataset is random exon sequencing of genomic DNA (paired-end library) on Illumina HiSeq 2000 platform with read length of 75bps.  The first step will be to download the data from SRA database using `fastq-dump` application of `sratoolkit`.While downloading we will be splitting the SRA format file into two fastq files; forward and reverse (R1 and R2)strand by using `--split-files` option in the command
 
 <pre>
 #!/bin/bash
@@ -60,7 +60,7 @@ cd ../raw_data
 fastq-dump --split-files SRR1517848</pre>
 The full script for slurm shedular can be found in the scripts folder by the name <a href="/scripts/data_download.sh">data_download.sh</a>.
 
-In this step we will download the paired-end interleveled fastq files from the NCBI SRA database. While downloading we will be splitting the fastq files into two fastq files; forward and reverse (R1 and R2)strand by using `--split-files` command, which gives us:
+The succesful execution of the script will output 2 fastq files in `raw_data` folder.
 
 <pre>
 raw_data/
@@ -71,7 +71,7 @@ raw_data/
 
 ### Quality Check and filtering of the reads
 
-In this step we will check the quality of the reads using `fastqc` and will trim reads using `sickle`.  A detailed account of these tools is explained in the freebayes tutorials.
+In this step we will check the quality of the reads using `fastqc` and trim reads to remove low quality bases with help of `sickle`.  A detailed account of these tools is explained in the <a href="https://github.com/CBC-UCONN/Variant-Calling-using-freebayes-and-Annotation">Variant-Calling-using-freebayes-and-Annotation</a> tutorial.
 <pre>
 #!/bin/bash
 #SBATCH --job-name=quality_control
@@ -124,18 +124,20 @@ fastqc -t 4 -o ../fastqc ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimme
 
 The full slurm script is called [qualityCheck_Trim.sh](/scripts/qualityCheck_Trim.sh).  
 
-In this script `qualityCheck_Trim.sh` we are performing 3 steps in a single go.  First `fastqc` based quality check of the raw reads, second trimming of reads using `sickle` and lastly checking the qualirty of reads post trimming using `fastqc`. These reads are now ready for downstream application.
+In this script `qualityCheck_Trim.sh` the dataset is passed through 3 different applications.  First we use`fastqc` to check the quality of the raw reads, second reads are trimmed of low quality bases using `sickle` and lastly check the qualirty of reads post trimming using `fastqc`. Fastqc produces html reports that can be downloaded to your local machine to visualise the results. 
 
-### Preparing the Reference Sequence
-The GATK needs two files when accessing the reference file:  
-* A dictionary of the contig names and sizes
-* An index file to access the reference fasta file bases
+Now these reads are ready for downstream processing. The next step in the workflow is to map reads to human genome using `bwa`.  The human genome is available as fasta file but it requires some pre-processing before we can use it to map reads. The next few steps are aimed at preparing the reference sequence (human genome fasta file).
 
-In here we are preparing these files upfront so the GATK will be able to use the FASTA file as a reference.
+### Pre-processing steps of Reference Sequence
+* Generate BWA index
+* Generate Fasta File Index 
+* Create a Sequence Dictionary
+
+In here we are preparing these files upfront so the GATK will be able to use the human genome FASTA file as a reference.
 
 ### Generate the BWA index  
 
-First run the following bwa command to create the index, given that you have reference hg19.fa file already downloaded in to the folder called `hg19`  
+First run the following bwa command to create the index, given that you have reference Homo_sapiens_assembly38.fasta file already downloaded in to the folder `resources` . 
 
 <pre style="color: silver; background: black;">
 #!/bin/bash
@@ -158,7 +160,7 @@ module load bwa
 
 cd ../resources
 
-bwa index Homo_sapiens_assembly38.fasta
+bwa index -p Homo_sapiens_assembly38 Homo_sapiens_assembly38.fasta
 
 </pre>
 The full slurm script for creating the index can be found at scripts folder by the name, <a href="/scripts/bwa_index.sh">bwa_index.sh</a> .
