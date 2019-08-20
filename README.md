@@ -33,7 +33,7 @@ The exome is the part of the genome composed of exons, the sequences which, when
 
 
 ### Sample Data Download 
-For this pipe line we are using **NA12878** test sample where it contain SRX655430: Details of this sample origin is explained in the freebayes tutorial.
+For the GATK pipe line we will be using SRR1517848 dataset belongs to PRJNA59853 project.  The project was designed by Broad institute as a part of generating haplotype map for human genome.  SRR1517848 dataset is a Illumina random exon sequencing of genomic DNA paired-end library sequenced on Illumina HiSeq 2000 platform with read length of 75bps.  
 
 <pre>
 #!/bin/bash
