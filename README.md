@@ -61,12 +61,13 @@ In this step we will download the paired-end interleveled fastq files from the N
 raw_data/
 ├── SRR1517848_1.fastq
 ├── SRR1517848_2.fastq
-</pre>
+</pre>  
 
-###Quality Check and filtering of the reads
+
+### Quality Check and filtering of the reads
 
 In this step we will check the quality of the reads using `fastqc` and will trim reads using `sickle`.  A detailed account of these tools is explained in the freebayes tutorials.
-
+<pre>
 #!/bin/bash
 #SBATCH --job-name=quality_control
 #SBATCH -n 1
@@ -88,14 +89,21 @@ mkdir ../{fastqc,trimmed}
 module load sickle
 module load fastqc
 
+</pre>   
+ 
 
-#Quality check of Reads
 
+
+#### Quality check of Reads
+
+```bash
 fastqc -t 4 -o ../fastqc ../raw_data/SRR1517848_1.fastq ../raw_data/SRR1517848_2.fastq
+```   
 
 
-#Trimming of reads
+#### Trimming of reads
 
+```bash
 sickle pe \
 -t sanger \
 -f ../raw_data/SRR1517848_1.fastq \
@@ -107,6 +115,8 @@ sickle pe \
 
 #Quality check of Reads post trimming
 fastqc -t 4 -o ../fastqc ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq
+```  
+
 
 In this script `qualityCheck_Trim.sh` we are performing 3 steps in a single go.  First `fastqc` based quality check of the raw reads, second trimming of reads using `sickle` and lastly checking the qualirty of reads post trimming using `fastqc`. These reads are now ready for downstream application.
 
