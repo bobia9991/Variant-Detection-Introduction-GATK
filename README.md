@@ -86,7 +86,7 @@ In this step we will check the quality of the reads using `fastqc` and will trim
 hostname
 date
 
-mkdir ../{fastqc,trimmed}
+mkdir -p ../{fastqc,trimmed}
 
 module load sickle
 module load fastqc
@@ -119,6 +119,7 @@ sickle pe \
 fastqc -t 4 -o ../fastqc ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq
 ```  
 
+The full slurm script is called [qualityCheck_Trim.sh](/scripts/qualityCheck_Trim.sh).  
 
 In this script `qualityCheck_Trim.sh` we are performing 3 steps in a single go.  First `fastqc` based quality check of the raw reads, second trimming of reads using `sickle` and lastly checking the qualirty of reads post trimming using `fastqc`. These reads are now ready for downstream application.
 
