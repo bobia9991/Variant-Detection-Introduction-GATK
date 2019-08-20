@@ -14,12 +14,12 @@
 hostname
 date
 
-mkdir ../align
+mkdir -p ../align
 
 cd ../align
 
 module load bwa/0.7.17
-#bwa mem -t 4 ../resources/chr20 ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq  -o SRR1517848.sam
+bwa mem -t 4 ../resources/chr20 ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq  -o SRR1517848.sam
 
 #SAM to BAM CONVERSION
 
