@@ -137,7 +137,7 @@ In here we are preparing these files upfront so the GATK will be able to use the
 
 ### Generate the BWA index  
 
-First run the following bwa command to create the index, given that you have reference Homo_sapiens_assembly38.fasta file already downloaded in to the folder `resources` . 
+First run the following bwa command to create the index, given that you have reference chr20.fasta file already downloaded in to the folder `resources` . 
 
 <pre style="color: silver; background: black;">
 #!/bin/bash
@@ -160,7 +160,7 @@ module load bwa
 
 cd ../resources
 
-bwa index -p Homo_sapiens_assembly38 Homo_sapiens_assembly38.fasta
+bwa index -p chr20 chr20.fasta
 
 </pre>
 The full slurm script for creating the index can be found at scripts folder by the name, <a href="/scripts/bwa_index.sh">bwa_index.sh</a> .
@@ -168,12 +168,12 @@ The full slurm script for creating the index can be found at scripts folder by t
 This will create the files listed below. These files will be used by `BWA` while mapping reads to reference. 
 <pre>
 resources/
-├── Homo_sapiens_assembly38.fa
-├── Homo_sapiens_assembly38.amb
-├── Homo_sapiens_assembly38.ann
-├── Homo_sapiens_assembly38.bwt
-├── Homo_sapiens_assembly38.pac
-└── Homo_sapiens_assembly38.sa
+├── chr20.fa
+├── chr20.amb
+├── chr20.ann
+├── chr20.bwt
+├── chr20.pac
+└── chr20.sa
 </pre>
 
 
@@ -200,13 +200,13 @@ module load samtools
 
 cd ../resources
 
-samtools faidx Homo_sapiens_assembly38.fasta</pre>
+samtools faidx chr20.fasta</pre>
 
 The full slurm script for creating the index can be found at scripts folder by the name, <a href="/scripts/fasta_index.sh">fasta_index.sh</a>.
 This will create:
 <pre>
 resources/
-└──  Homo_sapiens_assembly38.fasta.fai
+└──  chr20.fasta.fai
 </pre>
 
 It will consist of one record per line for each of the contigs in the fasta file. Where each record is composed of 
@@ -242,8 +242,8 @@ module load picard/2.9.2
 export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 java -jar $PICARD CreateSequenceDictionary \
-        REFERENCE=Homo_sapiens_assembly38.fasta \
-        OUTPUT=Homo_sapiens_assembly38.dict \
+        REFERENCE=chr20.fasta \
+        OUTPUT=chr20.dict \
         CREATE_INDEX=True
 </pre>
 The full slurm script for creating the dictionary can be found at scripts folder by the name, <a href="/scripts/dictionary.sh">dictionary.sh</a>.
@@ -251,7 +251,7 @@ The full slurm script for creating the dictionary can be found at scripts folder
 This will create:
 <pre>
 resources/
-└── Homo_sapiens_assembly38.dict
+└── chr20.dict
 </pre>
 
 This is formated like a SAM file header and when running GATK it automatically looks for these files.
@@ -283,7 +283,7 @@ mkdir ../align
 cd ../align
 
 module load bwa/0.7.17
-#bwa mem -t 4 ../resources/Homo_sapiens_assembly38 ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq  -o SRR1517848.sam
+#bwa mem -t 4 ../resources/chr20 ../trimmed/trimmed_SRR1517848_1.fastq ../trimmed/trimmed_SRR1517848_2.fastq  -o SRR1517848.sam
 
 #SAM to BAM CONVERSION
 
@@ -610,7 +610,7 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 java -jar $PICARD ReorderSam \
         INPUT=../readgroup/SRR1517848_rg.bam \
         OUTPUT=SRR1517848_karyotype.bam \
-        REFERENCE=../resources/Homo_sapiens_assembly38.fasta \
+        REFERENCE=../resources/chr20.fasta \
         CREATE_INDEX=True
 </pre>
 
@@ -626,7 +626,7 @@ This will create karyotype BAM files:
 Variant calling algorithms rely heavily on the quality scores assigned to the individual base calls in each sequence read. These scores are per-base estimates of error emitted by the sequencing machines. Unfortunately the scores produced by the machines are subject to various sources of systematic technical error, leading to over- or under-estimated base quality scores in the data. Base quality score recalibration (BQSR) is a process in which we apply machine learning to model these errors empirically and adjust the quality scores accordingly. This allows us to get more accurate base qualities, which in turn improves the accuracy of our variant calls. The base recalibration process involves two key steps: first the program builds a model of covariation based on the data and a set of known variants (which you can bootstrap if there is none available for your organism), then it adjusts the base quality scores in the data based on the model. There is an optional but highly recommended step that involves building a second model and generating before/after plots to visualize the effects of the recalibration process. This is useful for quality control purposes. This tool performs the first step described above: it builds the model of covariation and produces the recalibration table. It operates only at sites that are not in dbSNP; we assume that all reference mismatches we see are therefore errors and indicative of poor base quality. This tool generates tables based on various user-specified covariates (such as read group, reported quality score, cycle, and context). Assuming we are working with a large amount of data, we can then calculate an empirical probability of error given the particular covariates seen at this site, where p(error) = num mismatches / num observations. The output file is a table (of the several covariate values, number of observations, number of mismatches, empirical quality score).
 The process take place in two steps In first step the recalibration statistics are calculated and then applied to bam file in second step.
 
-For this step we will require a vcf file of known varaints that are know about the human geneome `Homo_sapiens_assembly38.dbsnp138.vcf`.
+For this step we will require a vcf file of known varaints that are know about the human geneome `chr20.dbsnp138.vcf`.
 
 <pre>
 
@@ -658,14 +658,14 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratchi
 
 gatk BaseRecalibrator \
    -I ../reorder/SRR1517848_karyotype.bam \
-   -R ../resources/Homo_sapiens_assembly38.fasta \
-   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant_Detection_GATK/resources/Homo_sapiens_assembly38.dbsnp138.vcf \
+   -R ../resources/chr20.fasta \
+   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant_Detection_GATK/resources/chr20.dbsnp138.vcf \
    -O recal_data.table
 
 # STEP2
 
  gatk ApplyBQSR \
-   -R ../resources/Homo_sapiens_assembly38.fasta \
+   -R ../resources/chr20.fasta \
    -I ../reorder/SRR1517848_karyotype.bam \
    --bqsr-recal-file recal_data.table \
    -O SRR1517848_recalb.bam
@@ -703,7 +703,7 @@ module load GATK/4.0
 export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 gatk HaplotypeCaller \
-        --reference ../resources/Homo_sapiens_assembly38.fasta \
+        --reference ../resources/chr20.fasta \
         --input ../baserecalbn/SRR1517848_recalb.bam \
         --output SRR1517848_haplotype.vcf
 </pre>

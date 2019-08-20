@@ -18,4 +18,4 @@ module load bwa
 
 cd ../resources
 
-bwa index Homo_sapiens_assembly38.fasta
+bwa index chr20.fasta

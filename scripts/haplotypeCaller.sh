@@ -21,7 +21,7 @@ module load GATK/4.0
 export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 gatk HaplotypeCaller \
-        --reference ../resources/Homo_sapiens_assembly38.fasta \
+        --reference ../resources/chr20.fasta \
         --input ../baserecalbn/SRR1517848_recalb.bam \
         --output SRR1517848_haplotype.vcf
 

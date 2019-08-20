@@ -26,14 +26,14 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratchi
 
 gatk BaseRecalibrator \
    -I ../reorder/SRR1517848_karyotype.bam \
-   -R ../resources/Homo_sapiens_assembly38.fasta \
-   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant_Detection_GATK/resources/Homo_sapiens_assembly38.dbsnp138.vcf \
+   -R ../resources/chr20.fasta \
+   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant_Detection_GATK/resources/chr20.dbsnp138.vcf \
    -O recal_data.table
 
 # STEP2
 
  gatk ApplyBQSR \
-   -R ../resources/Homo_sapiens_assembly38.fasta \
+   -R ../resources/chr20.fasta \
    -I ../reorder/SRR1517848_karyotype.bam \
    --bqsr-recal-file recal_data.table \
    -O SRR1517848_recalb.bam

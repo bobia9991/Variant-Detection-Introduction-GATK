@@ -20,6 +20,6 @@ module load picard/2.9.2
 export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 java -jar $PICARD CreateSequenceDictionary \
-        REFERENCE=Homo_sapiens_assembly38.fasta \
-        OUTPUT=Homo_sapiens_assembly38.dict \
+        REFERENCE=chr20.fasta \
+        OUTPUT=chr20.dict \
         CREATE_INDEX=True

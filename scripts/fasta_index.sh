@@ -18,4 +18,4 @@ module load samtools
 
 cd ../resources
 
-samtools faidx Homo_sapiens_assembly38.fasta
+samtools faidx chr20.fasta
