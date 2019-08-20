@@ -49,6 +49,8 @@ For this pipe line we are using **NA12878** test sample where it contain SRX6554
 hostname
 date
 
+mkdir -p ../raw_data
+
 module load sratoolkit/2.8.2
 cd ../raw_data
 
