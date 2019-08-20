@@ -659,7 +659,7 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratchi
 gatk BaseRecalibrator \
    -I ../reorder/SRR1517848_karyotype.bam \
    -R ../resources/chr20.fasta \
-   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant_Detection_GATK/resources/chr20.dbsnp138.vcf \
+   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant-Detection-Introduction-GATK/resources/Homo_sapiens_assembly38.dbsnp138.vcf \
    -O recal_data.table
 
 # STEP2
