@@ -14,6 +14,8 @@
 hostname
 date
 
+mkdir -p ../raw_data
+
 module load sratoolkit/2.8.2
 cd ../raw_data
 
