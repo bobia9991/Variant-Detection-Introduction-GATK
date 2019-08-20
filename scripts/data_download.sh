@@ -18,4 +18,3 @@ module load sratoolkit/2.8.2
 cd ../raw_data
 
 fastq-dump --split-files SRR1517848
-fastq-dump --split-files SRR1517878 
