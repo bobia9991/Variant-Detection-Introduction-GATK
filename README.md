@@ -30,7 +30,7 @@ The exome is the part of the genome composed of exons, the sequences which, when
 
 
 ### Sample Data Download 
-For this pipe line we are using **NA12878** test sample where it contain SRX655430:etails of this sample origin is explained in the freebayes tutorial.
+For this pipe line we are using **NA12878** test sample where it contain SRX655430: Details of this sample origin is explained in the freebayes tutorial.
 
 <pre>
 #!/bin/bash
