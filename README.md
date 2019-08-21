@@ -743,5 +743,5 @@ chr20   174075  .       C       A       18.59   .       AC=2;AF=1.00;AN=2;DP=1;E
 </pre>
 
 
-The variants identified can be furter filtered or sorted on different parameters that suits the downstream analysis.  <a href="https://software.broadinstitute.org/gatk/">GATK</a> has a range of tools available to achieve that.  A more detailed account of various tools can be found in the "Best Practices" section on the <a href="https://software.broadinstitute.org/gatk/">GATK</a> website.
+The variants identified can be further filtered or sorted on different parameters that suits the downstream analysis.  <a href="https://software.broadinstitute.org/gatk/">GATK</a> has a range of tools available to achieve that.  A more detailed account of various tools can be found in the "Best Practices" section on the <a href="https://software.broadinstitute.org/gatk/">GATK</a> website.
 
