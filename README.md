@@ -670,7 +670,7 @@ gatk ApplyBQSR \
 
 </pre>
 
-The full script is called <a href="/scripts/reorder.sh">BaseRecalibration.sh</a> and can be found in scripts folder.
+The full script is called <a href="/scripts/BaseRecalibration.sh">BaseRecalibration.sh</a> and can be found in scripts folder.
 
 
 ### Variant Calling 
