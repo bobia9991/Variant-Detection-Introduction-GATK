@@ -733,10 +733,15 @@ A preview of the vcf file is shown here
 ##contig=<ID=HLA-DRB1*16:02:01,length=11005,assembly=38>
 ##source=HaplotypeCaller
 #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  SRR1517848
-chr1    187485  .       G       A       49.28   .       AC=2;AF=1.00;AN=2;DP=3;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=39.84;QD=16.43;SOR=1.179 GT:AD:DP:GQ:PL  1/1:0,3:3:9:77,9,0
-chr1    873542  .       G       A       196.90  .       AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.35;QD=25.36;SOR=1.981 GT:AD:DP:GQ:PL  1/1:0,5:5:15:225,15,0
-chr1    873548  .       C       T       196.90  .       AC=2;AF=1.00;AN=2;DP=5;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=37.35;QD=28.73;SOR=1.981 GT:AD:DP:GQ:PL  1/1:0,5:5:15:225,15,0
-chr1    942451  .       T       C       21.77   .       AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=10.88;SOR=0.693 GT:AD:DP:GQ:PL  1/1:0,2:2:6:49,6,0
+chr20   158721  .       G       A       17.81   .       AC=2;AF=1.00;AN=2;DP=2;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=60.00;QD=8.91;SOR=0.693  GT:AD:DP:GQ:PL  1/1:0,2:2:6:45,6,0
+chr20   174042  .       C       T       15.65   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=15.65;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:42,3,0
+chr20   174047  .       G       C       15.65   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=15.65;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:42,3,0
+chr20   174049  .       C       G       15.65   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=15.65;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:42,3,0
+chr20   174065  .       T       A       18.59   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=18.59;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:45,3,0
+chr20   174068  .       C       T       18.59   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=18.59;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:45,3,0
+chr20   174075  .       C       A       18.59   .       AC=2;AF=1.00;AN=2;DP=1;ExcessHet=3.0103;FS=0.000;MLEAC=2;MLEAF=1.00;MQ=58.00;QD=18.59;SOR=1.609 GT:AD:DP:GQ:PL  1/1:0,1:1:3:45,3,0
 </pre>
+
+
 
 
