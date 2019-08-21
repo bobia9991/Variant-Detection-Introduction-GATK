@@ -580,7 +580,7 @@ In addition to the presence of a read group in the header, each read must belong
 
 ### Reorder BAM file
 
-In this step we will reorder the SAM/BAM file to match the contig ordering in the reference fasta file, as to determine the exact name matching of contigs. Reads which are mapped to contigs which are absent in the new reference file are rejected or dropped. This step can run faster if we provide the indexed BAM file.
+Samtools `sort` command sorts the chromosomes/contigs in lexicographical order, however GATK downstream analysis requires the chromosmes/contigs to be sorted based on their order of occurance in fasta file.  This steps acieves that.  Reads which are mapped to contigs which are absent in the new reference file are rejected or dropped. This step can run faster if we provide the indexed BAM file.
 
 The following command will reorder the BAM file using PICARD tools:
 <pre>
@@ -743,5 +743,5 @@ chr20   174075  .       C       A       18.59   .       AC=2;AF=1.00;AN=2;DP=1;E
 </pre>
 
 
-
+The variants identified can be furter filtered or sorted on different parameters that suits the downstream analysis.  <a href="https://software.broadinstitute.org/gatk/">GATK</a> has a range of tools available to achieve that.  A more detailed account of various tools can be found in the "Best Practices" section on the <a href="https://software.broadinstitute.org/gatk/">GATK</a> website.
 
