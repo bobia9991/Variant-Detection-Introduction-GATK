@@ -1,4 +1,24 @@
-# Variant Detection Introduction using GATK 
+# Variant Detection Introduction using GATK   
+
+This repository is a usable, publicly available tutorial for introduction to basics of variant calling. All steps have been provided for the UConn CBC Xanadu cluster here with appropriate headers for the Slurm scheduler that can be modified simply to run.  Commands should never be executed on the submit nodes of any HPC machine.  If working on the Xanadu cluster, you should use sbatch scriptname after modifying the script for each stage.  Basic editing of all scripts can be performed on the server with tools such as nano, vim, or emacs.  If you are new to Linux, please use [this](https://bioinformatics.uconn.edu/unix-basics) handy guide for the operating system commands.  In this guide, you will be working with common bio Informatic file formats, such as [FASTA](https://en.wikipedia.org/wiki/FASTA_format), [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format), [SAM/BAM](https://en.wikipedia.org/wiki/SAM_(file_format)), [GFF3/GTF](https://en.wikipedia.org/wiki/General_feature_format) and [VCF](https://en.wikipedia.org/wiki/Variant_Call_Format). You can learn even more about each file format [here](https://bioinformatics.uconn.edu/resources-and-events/tutorials/file-formats-tutorial/). If you do not have a Xanadu account and are an affiliate of UConn/UCHC, please apply for one **[here](https://bioinformatics.uconn.edu/contact-us/)**.   
+
+Contents  
+1.    [Introduction to Variant Detection using Whole Exome Sequencing](#introduction-to-variant-detection-using-whole-exome-sequencing)  
+2.    [Sample Data Download](#sample-data-download)
+3.    [Quality Check and filtering of the reads](#quality-check-and-filtering-of-the-reads)
+4.    [Preparing the Reference Sequence](#pre-processing-steps-of-reference-sequence)
+5.    [Aligning of Reads](#aligning-of-reads)
+6.    [SAM to BAM Conversion and Remove Singletons](#sam-to-bam-conversion)
+7.    [Remove Singletons](#remove-singletons)
+8.    [Sort BAM files using PICARD](#sort-bam-files-using-picard)
+9.    [Remove PCR Duplicates using PICARD](#remove-pcr-duplicates-using-picard)
+10.   [Add Read Group Information](#add-read-group-information)
+11.   [Reorder BAM file](#reorder-bam-file)
+12.   [Base Recalibration](#base-recalibration)
+13.   [Variant Calling](#variant-calling)
+  
+  
+
 
 This repository is a usable, publicly available tutorial for analyzing differential expression data and creating topological gene networks. All steps have been provided for the UConn CBC Xanadu cluster here with appropriate headers for the Slurm scheduler that can be modified simply to run.  Commands should never be executed on the submit nodes of any HPC machine.  If working on the Xanadu cluster, you should use sbatch scriptname after modifying the script for each stage.  Basic editing of all scripts can be performed on the server with tools such as nano, vim, or emacs.  If you are new to Linux, please use <a href="https://bioinformatics.uconn.edu/unix-basics">this</a> handy guide for the operating system commands.  In this guide, you will be working with common bio Informatic file formats, such as <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a>, <a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a>, <a href="https://en.wikipedia.org/wiki/SAM_(file_format)">SAM/BAM</a>, and <a href="https://en.wikipedia.org/wiki/General_feature_format">GFF3/GTF</a>. You can learn even more about each file format <a href="https://bioinformatics.uconn.edu/resources-and-events/tutorials/file-formats-tutorial/">here</a>. If you do not have a Xanadu account and are an affiliate of UConn/UCHC, please apply for one <a href="https://bioinformatics.uconn.edu/contact-us/">here</a>.
 
