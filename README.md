@@ -609,7 +609,7 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 java -jar $PICARD ReorderSam \
         INPUT=../readgroup/SRR1517848_rg.bam \
-        OUTPUT=SRR1517848_karyotype.bam \
+        OUTPUT=SRR1517848_reorder.bam \
         REFERENCE=../resources/chr20.fasta \
         CREATE_INDEX=True
 </pre>
@@ -619,7 +619,7 @@ This will create karyotype BAM files:
 <pre>
 <strong>reorder/</strong>
 ├── SRR1517848_karyotype.bai
-├── SRR1517848_karyotype.bam
+├── SRR1517848_reorder.bam
 </pre>
 
 ### Base Recalibration
@@ -656,7 +656,7 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratchi
 
 # STEP1
 gatk BaseRecalibrator \
-        -I ../reorder/SRR1517848_karyotype.bam \
+        -I ../reorder/SRR1517848_reorder.bam \
         -R ../resources/chr20.fasta \
         --known-sites ../resources/chr20_dbSNPref.vcf \
         -O recal_data.table
@@ -664,7 +664,7 @@ gatk BaseRecalibrator \
 # STEP2
 gatk ApplyBQSR \
         -R ../resources/chr20.fasta \
-        -I ../reorder/SRR1517848_karyotype.bam \
+        -I ../reorder/SRR1517848_reorder.bam \
         --bqsr-recal-file recal_data.table \
         -O SRR1517848_recalb.bam
 

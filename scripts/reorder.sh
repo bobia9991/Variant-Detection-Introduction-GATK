@@ -23,7 +23,7 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratch
 
 java -jar $PICARD ReorderSam \
         INPUT=../readgroup/SRR1517848_rg.bam \
-        OUTPUT=SRR1517848_karyotype.bam \
+        OUTPUT=SRR1517848_reorder.bam \
         REFERENCE=../resources/chr20.fasta \
         CREATE_INDEX=True
 
