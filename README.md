@@ -655,20 +655,18 @@ export _JAVA_OPTIONS=-Djava.io.tmpdir=/scratchi
 # Baserecalibration takes place in two step
 
 # STEP1
-
 gatk BaseRecalibrator \
-   -I ../reorder/SRR1517848_karyotype.bam \
-   -R ../resources/chr20.fasta \
-   --known-sites /UCHC/PublicShare/Variant_Detection_Tutorials/Variant-Detection-Introduction-GATK/resources/Homo_sapiens_assembly38.dbsnp138.vcf \
-   -O recal_data.table
+        -I ../reorder/SRR1517848_karyotype.bam \
+        -R ../resources/chr20.fasta \
+        --known-sites ../resources/chr20_dbSNPref.vcf \
+        -O recal_data.table
 
 # STEP2
-
- gatk ApplyBQSR \
-   -R ../resources/chr20.fasta \
-   -I ../reorder/SRR1517848_karyotype.bam \
-   --bqsr-recal-file recal_data.table \
-   -O SRR1517848_recalb.bam
+gatk ApplyBQSR \
+        -R ../resources/chr20.fasta \
+        -I ../reorder/SRR1517848_karyotype.bam \
+        --bqsr-recal-file recal_data.table \
+        -O SRR1517848_recalb.bam
 
 </pre>
 
