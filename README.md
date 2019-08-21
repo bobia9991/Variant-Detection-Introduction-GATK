@@ -291,8 +291,7 @@ module load samtools/1.7
 samtools view -@ 4 -bS SRR1517848.sam >> SRR1517848.bam
 
 </pre>
-The full scrip is called <a href="/scripts/align.sh">align.sh</a> and can be found in the scripts folder.
-
+The useage information of the samtools:
 <pre>
 Usage: bwa mem [options] reference.fasta read1.fa read2.fa -o outputname.sam
 mem    The BWA-MEM algorithm performs local alignment  
@@ -317,6 +316,8 @@ samtools view -@ 8 -bS INPUT.sam > OUTPUT.bam </pre>
 -b    output in BAM format
 -S    input format auto detected
 </pre>
+
+The full scrip is called <a href="/scripts/align.sh">align.sh</a> and can be found in the scripts folder, which contain the alignment and and SAM to BAM conversion.
 
 This will create BAM format files:
 <pre>
